@@ -1,0 +1,103 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<link rel="import" href="../oc-form-container/oc-form-container.html">
+<link rel="import" href="../oc-organisation-api/oc-organisation-api.html">
+
+<dom-module id="oc-edit-contact-person">
+    <template>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <oc-organisation-api id="organisationApi"></oc-organisation-api>
+
+        <oc-form-container header="Edit Contact Person Details">
+            <div class="row">
+                <paper-input label="Name" value="{{_profile.firstName}}"></paper-input>
+            </div>
+            <div class="row">
+                <paper-input label="Surname" value="{{_profile.surname}}"></paper-input>
+            </div>
+            <div class="row">
+                <paper-input label="Email" value="{{_profile.email}}"></paper-input>
+            </div>
+            <div class="row">
+                <paper-input label="Cell Number" value="{{_profile.cellphoneNumber}}"></paper-input>
+            </div>
+            <div class="row">
+                <paper-input label="Gender" value="{{_profile.sex}}"></paper-input>
+            </div>
+            <div slot="button">
+                <paper-button on-tap="_updateContactPerson">Save</paper-button>
+            </div>
+        </oc-form-container>
+
+    </template>
+    <script>
+		/**
+		 * `oc-edit-contact-person`
+		 * Edit Functionality For Contact Person
+		 *
+		 * @customElement
+		 * @polymer
+		 * @demo demo/index.html
+		 */
+		class OcEditContactPerson extends Ordercloud.ReduxMixin(Polymer.Element) {
+			static get is() {
+				return 'oc-edit-contact-person';
+			}
+
+			static get properties() {
+				return {
+					_organisationId: {
+						type: Number,
+						statePath: 'organisation.id',
+						observer: '_getContactPerson',
+					},
+
+					isActive: {
+						type: Boolean,
+						value: false,
+						notify: true,
+					},
+				};
+			}
+
+			_getContactPerson() {
+				this.$.organisationApi.getOrganisationDetail(this._organisationId)
+					.then((request) => {
+						// Will be used updating contact person onject
+						this._contactPerson = request.response.contactPerson;
+
+						// Used to capture the data
+						this._profile = request.response.contactPerson.profile;
+					})
+					.catch((error) => {
+						console.error(error.message);
+					});
+			}
+
+			_updateContactPerson() {
+				const orgDetailObject = {
+					contactPerson: this._contactPerson,
+				};
+
+				this.$.organisationApi.updateOrganisationDetails(this._organisationId, orgDetailObject)
+					.then(() => {
+						this.isActive = false;
+					})
+					.catch((error) => {
+						console.error(error.message);
+					});
+			}
+
+		}
+
+		window.customElements.define(OcEditContactPerson.is, OcEditContactPerson);
+    </script>
+</dom-module>

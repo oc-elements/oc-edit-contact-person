@@ -1,0 +1,20 @@
+{
+  "name": "oc-edit-contact-person",
+  "description": "Edit Functionality For Contact Person",
+  "main": "oc-edit-contact-person.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "oc-form-container": "git://github.com/oc-elements/oc-form-container",
+    "oc-organisation-api": "git://github.com/oc-elements/oc-organisation-api",
+    "paper-input": "^2.1.1",
+    "paper-button": "^2.0.0"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  },
+  "resolutions": {
+    "polymer": "^2.0.0"
+  }
+}
