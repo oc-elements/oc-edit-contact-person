@@ -5,7 +5,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
     "oc-form-container": "git://github.com/oc-elements/oc-form-container",
-    "oc-organisation-api": "git://github.com/oc-elements/oc-organisation-api",
+    "oc-organisation-api": "git://github.com/oc-elements/oc-organisation-api#2.x",
     "paper-input": "^2.1.1",
     "paper-button": "^2.0.0"
   },
