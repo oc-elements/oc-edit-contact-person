@@ -73,7 +73,7 @@
 					.then((request) => {
 						// Will be used updating contact person onject
 						this._contactPerson = request.response.contactPerson;
-
+                        this._shopContactNumber = request.response.contactNumber;
 						// Used to capture the data
 						this._profile = request.response.contactPerson.profile;
 					})
@@ -85,6 +85,7 @@
 			_updateContactPerson() {
 				const orgDetailObject = {
 					contactPerson: this._contactPerson,
+                    contactNumber: this._shopContactNumber,
 				};
 
 				this.$.organisationApi.updateOrganisationDetails(this._organisationId, orgDetailObject)
