@@ -4,6 +4,7 @@
 
 <link rel="import" href="../oc-form-container/oc-form-container.html">
 <link rel="import" href="../oc-organisation-api/oc-organisation-api.html">
+<link rel="import" href="../../src/oc-button-styles.html">
 
 <dom-module id="oc-edit-contact-person">
     <template>
@@ -18,22 +19,32 @@
 
         <oc-form-container header="Edit Contact Person Details">
             <div class="row">
-                <paper-input label="Name" value="{{_profile.firstName}}"></paper-input>
+                <div class="col-12">
+                    <paper-input label="Name" value="{{_profile.firstName}}"></paper-input>
+                </div>
             </div>
             <div class="row">
-                <paper-input label="Surname" value="{{_profile.surname}}"></paper-input>
+                <div class="col-12">
+                    <paper-input label="Surname" value="{{_profile.surname}}"></paper-input>
+                </div>
             </div>
             <div class="row">
-                <paper-input label="Email" value="{{_profile.email}}"></paper-input>
+                <div class="col-12">
+                    <paper-input label="Email" value="{{_profile.email}}"></paper-input>
+                </div>
             </div>
             <div class="row">
-                <paper-input label="Cell Number" value="{{_profile.cellphoneNumber}}"></paper-input>
+                <div class="col-12">
+                    <paper-input label="Cell Number" value="{{_profile.cellphoneNumber}}"></paper-input>
+                </div>
             </div>
             <div class="row">
-                <paper-input label="Gender (M/F)" value="{{_profile.sex}}"></paper-input>
+                <div class="col-12">
+                    <paper-input label="Gender (M/F)" value="{{_profile.sex}}"></paper-input>
+                </div>
             </div>
             <div slot="button">
-                <paper-button on-tap="_updateContactPerson">Save</paper-button>
+                <paper-button on-tap="_updateContactPerson" class="primary-button">Save</paper-button>
             </div>
         </oc-form-container>
 
